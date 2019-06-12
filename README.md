@@ -26,6 +26,7 @@ Attribute
 </pre>
 <br/>
 ---------- before<br/>
+<br/>
 <pre>
 var label = UILabel()
 
@@ -41,23 +42,25 @@ let attributes = [
     NSAttributedString.Key.font           : UIFont.systemFont(ofSize: 13, weight: .bold),
     NSAttributedString.Key.foregroundColor: UIColor.black
 ];
+
+label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);
 </pre>
 <br/>
-label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);<br/>
-<br/>
 ---------- after<br/>
-\tvar label = UILabel() <br/>
-label.attrbuted(<br/>
-    "測試文字",<br/>
-    sParagraphs([<br/>
-        sParagraph(key: .textAlignment, value: NSTextAlignment.left),<br/>
-        sParagraph(key: .lineBreakMode, value: NSLineBreakMode.byTruncatingTail),<br/>
-        sParagraph(key: .lineSpacing, value: 10),<br/>
-        sParagraph(key: .lineMinHeight, value: 30)<br/>
-        ]),<br/>
-    sAttributes([<br/>
-        sAttribute(key: .charSpacing, value: 1.0),<br/>
-        sAttribute(key: .font, value: UIFont.systemFont(ofSize: 13, weight: .bold)),<br/>
-        sAttribute(key: .textColor, value: UIColor.black)<br/>
-        ]));<br/>
 <br/>
+<pre>
+\tvar label = UILabel();
+label.attrbuted(
+    "測試文字",
+    sParagraphs([
+        sParagraph(key: .textAlignment, value: NSTextAlignment.left),
+        sParagraph(key: .lineBreakMode, value: NSLineBreakMode.byTruncatingTail),
+        sParagraph(key: .lineSpacing, value: 10),
+        sParagraph(key: .lineMinHeight, value: 30)
+        ]),
+    sAttributes([
+        sAttribute(key: .charSpacing, value: 1.0),
+        sAttribute(key: .font, value: UIFont.systemFont(ofSize: 13, weight: .bold)),
+        sAttribute(key: .textColor, value: UIColor.black)
+        ]));
+</pre>
