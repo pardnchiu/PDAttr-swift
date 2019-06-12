@@ -21,7 +21,7 @@ Attribute<br/>
     textColor;   // 顏色<br/>
     charSpacing; // 字元間距<br/>
 <br/>
-## before
+---------- before<br/>
 var label = UILabel()<br/>
 <br/>
 var paraph = NSMutableParagraphStyle()<br/>
@@ -39,8 +39,8 @@ let attributes = [<br/>
 <br/>
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);<br/>
 <br/>
-## after
-var label = UILabel() <br/>
+---------- after<br/>
+\tvar label = UILabel() <br/>
 label.attrbuted(<br/>
     "測試文字",<br/>
     sParagraphs([<br/>
