@@ -5,7 +5,7 @@
 透過整理好的項目，方便設定個性化文字內容<br/>
 <br/>
 Paragraph<br/>
-    textAlignment;        // 對齊方向<br/>
+&nbsp; textAlignment;        // 對齊方向<br/>
     lineBreakMode;        // 斷行顯示<br/>
     lineSpacing;          // 行間距<br/>
     lineMinHeight;        // 最低行高<br/>
