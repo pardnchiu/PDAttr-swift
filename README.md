@@ -49,7 +49,7 @@ label.attributedText = NSAttributedString(string: "測試文字", attributes: at
 ---------- after<br/>
 <br/>
 <pre>
-\tvar label = UILabel();
+var label = UILabel();
 label.attrbuted(
     "測試文字",
     sParagraphs([
