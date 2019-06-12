@@ -2,7 +2,7 @@
 <br/>
 簡化設定 AttrbutedText 步驟<br/>
 <br/>
-透過整理好的項目，方便設定個性化文字內容<br/>
+透過預先整理好的項目，更能輕鬆地設定個性化文字內容<br/>
 <br/>
 <pre>
 Paragraph
