@@ -25,7 +25,7 @@ Attribute
     charSpacing; // 字元間距
 </pre>
 <br/>
----------- before<br/>
+簡化前<br/>
 <br/>
 <pre>
 var label = UILabel()
@@ -46,8 +46,7 @@ let attributes = [
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);
 </pre>
 <br/>
----------- after<br/>
-<br/>
+簡化後<br/>
 <pre>
 var label = UILabel();
 label.attrbuted(
