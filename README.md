@@ -4,17 +4,19 @@
 <br/>
 透過整理好的項目，方便設定個性化文字內容<br/>
 <br/>
-Paragraph<br/>
-&nbsp; textAlignment;        // 對齊方向<br/>
-    lineBreakMode;        // 斷行顯示<br/>
-    lineSpacing;          // 行間距<br/>
-    lineMinHeight;        // 最低行高<br/>
-    lineMaxHeight;        // 最高行高<br/>
-    paragraphSpacing;     // 段间距<br/>
-    firstLineHeadIndent;  // 首行縮進<br/>
-    headIndent;           // 整體縮進<br/>
-    tailIndent;<br/>
-    baseWritingDirection; // 書寫方向<br/>
+<pre>
+Paragraph
+    textAlignment;        // 對齊方向
+    lineBreakMode;        // 斷行顯示
+    lineSpacing;          // 行間距
+    lineMinHeight;        // 最低行高
+    lineMaxHeight;        // 最高行高
+    paragraphSpacing;     // 段间距
+    firstLineHeadIndent;  // 首行縮進
+    headIndent;           // 整體縮進
+    tailIndent;
+    baseWritingDirection; // 書寫方向
+</pre>
 <br/>
 Attribute<br/>
     font;        // 自型<br/>
