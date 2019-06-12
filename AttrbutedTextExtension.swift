@@ -1,11 +1,10 @@
 //
-//  Attrbute.swift
-//  PDExtension
+//  AttrbutedTextExtension.swift
+//  Pardn Co., Ltd
 //
-//  Created by Pardn Co., Ltd on 2019/6/9.
-//  Copyright © 2019 Pardn Co., Ltd. All rights reserved.
+//  Created by Pardn Co., Ltd on 2019/5/24.
+//  Copyright © 2016-2018 Pardn Co., Ltd All rights reserved.
 //
-
 
 import Foundation
 import UIKit
