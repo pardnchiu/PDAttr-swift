@@ -18,26 +18,30 @@ Paragraph
     baseWritingDirection; // 書寫方向
 </pre>
 <br/>
-Attribute<br/>
-    font;        // 自型<br/>
-    textColor;   // 顏色<br/>
-    charSpacing; // 字元間距<br/>
+<pre>
+Attribute
+    font;        // 自型
+    textColor;   // 顏色
+    charSpacing; // 字元間距
+</pre>
 <br/>
 ---------- before<br/>
-var label = UILabel()<br/>
-<br/>
-var paraph = NSMutableParagraphStyle()<br/>
-paraph.alignment         = .left;<br/>
-paraph.lineBreakMode     = .byTruncatingTail<br/>
-paraph.lineSpacing       = 10;<br/>
-paraph.minimumLineHeight = 30;<br/>
-<br/>
-let attributes = [<br/>
-    NSAttributedString.Key.paragraphStyle : paraph,<br/>
-    NSAttributedString.Key.kern           : 1.0,<br/>
-    NSAttributedString.Key.font           : UIFont.systemFont(ofSize: 13, weight: .bold),<br/>
-    NSAttributedString.Key.foregroundColor: UIColor.black<br/>
-];<br/>
+<pre>
+var label = UILabel()
+
+var paraph = NSMutableParagraphStyle();
+paraph.alignment         = .left;
+paraph.lineBreakMode     = .byTruncatingTail;
+paraph.lineSpacing       = 10;
+paraph.minimumLineHeight = 30;
+
+let attributes = [
+    NSAttributedString.Key.paragraphStyle : paraph,
+    NSAttributedString.Key.kern           : 1.0,
+    NSAttributedString.Key.font           : UIFont.systemFont(ofSize: 13, weight: .bold),
+    NSAttributedString.Key.foregroundColor: UIColor.black
+];
+</pre>
 <br/>
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);<br/>
 <br/>
