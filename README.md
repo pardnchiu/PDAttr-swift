@@ -29,6 +29,7 @@ PDAttributeItem
 <br/>
 <pre>
 var label = UILabel();
+
 var paraph = NSMutableParagraphStyle();
 paraph.alignment         = .left;
 paraph.lineBreakMode     = .byTruncatingTail;
@@ -39,7 +40,8 @@ let attributes = [
     NSAttributedString.Key.paragraphStyle : paraph,
     NSAttributedString.Key.kern           : 1.0,
     NSAttributedString.Key.font           : UIFont.systemFont(ofSize: 13, weight: .bold),
-    NSAttributedString.Key.foregroundColor: UIColor.black];
+    NSAttributedString.Key.foregroundColor: UIColor.black
+    ];
     
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);
 </pre>
