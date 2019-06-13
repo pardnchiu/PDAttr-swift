@@ -20,9 +20,9 @@ PDParagraphItem
 <br/>
 <pre>
 PDAttributeItem
-    font;
-    textColor;
-    charSpacing;
+    font;        // 自型
+    textColor;   // 顏色
+    charSpacing; // 字元間距
 </pre>
 <br/>
 簡化前<br/>
