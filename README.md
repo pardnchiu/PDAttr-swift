@@ -1,28 +1,28 @@
-# AttrbutedTextExtension<br/>
+# PDAttrbuted<br/>
 <br/>
 簡化設定 AttrbutedText 步驟<br/>
 <br/>
 透過預先整理好的項目，更能輕鬆地設定個性化文字內容<br/>
 <br/>
 <pre>
-Paragraph
-    textAlignment;        // 對齊方向
-    lineBreakMode;        // 斷行顯示
-    lineSpacing;          // 行間距
-    lineMinHeight;        // 最低行高
-    lineMaxHeight;        // 最高行高
-    paragraphSpacing;     // 段间距
-    firstLineHeadIndent;  // 首行縮進
-    headIndent;           // 整體縮進
+PDParagraphItem
+    textAlignment;       // 對齊
+    lineBreakMode;       // 斷行
+    lineSpacing;         // 行間距
+    lineMinHeight;       // 最低行高
+    lineMaxHeight;       // 最高行高
+    paragraphSpacing;    // 段间距
+    firstLineHeadIndent; // 首行縮進
+    headIndent;          // 整體縮進
     tailIndent;
-    baseWritingDirection; // 書寫方向
+    writingDirection;    // 書寫方向
 </pre>
 <br/>
 <pre>
-Attribute
-    font;        // 自型
-    textColor;   // 顏色
-    charSpacing; // 字元間距
+PDAttributeItem
+    font;
+    textColor;
+    charSpacing;
 </pre>
 <br/>
 簡化前<br/>
@@ -51,15 +51,15 @@ label.attributedText = NSAttributedString(string: "測試文字", attributes: at
 var label = UILabel();
 label.attrbuted(
     "測試文字",
-    sParagraphs([
-        sParagraph(key: .textAlignment, value: NSTextAlignment.left),
-        sParagraph(key: .lineBreakMode, value: NSLineBreakMode.byTruncatingTail),
-        sParagraph(key: .lineSpacing, value: 10),
-        sParagraph(key: .lineMinHeight, value: 30)
+    PDParagraphs([
+        PDParagraph(key: .textAlignment, value: NSTextAlignment.left),
+        PDParagraph(key: .lineBreakMode, value: NSLineBreakMode.byTruncatingTail),
+        PDParagraph(key: .lineSpacing, value: 10),
+        PDParagraph(key: .lineMinHeight, value: 30)
         ]),
-    sAttributes([
-        sAttribute(key: .charSpacing, value: 1.0),
-        sAttribute(key: .font, value: UIFont.systemFont(ofSize: 13, weight: .bold)),
-        sAttribute(key: .textColor, value: UIColor.black)
+    PDAttributes([
+        PDAttribute(key: .charSpacing, value: 1.0),
+        PDAttribute(key: .font, value: UIFont.systemFont(ofSize: 13, weight: .bold)),
+        PDAttribute(key: .textColor, value: UIColor.black)
         ]));
 </pre>
