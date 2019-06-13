@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public enum sParagraphItem {
+public enum PDParagraphItem {
     case textAlignment;
     case lineBreakMode;
     case lineSpacing;         // 行間距
@@ -22,11 +22,11 @@ public enum sParagraphItem {
     case baseWritingDirection; // 書寫方向
 }
 
-public struct sParagraph {
-    public var key  : sParagraphItem
+public struct PDParagraph {
+    public var key  : PDParagraphItem
     public var value: Any
     
-    public init(key: sParagraphItem, value: Any) {
+    public init(key: PDParagraphItem, value: Any) {
         self.key = key;
         
         switch key {
@@ -37,7 +37,7 @@ public struct sParagraph {
     }
 }
 
-public func sParagraphs(_ paras: [sParagraph]) -> NSMutableParagraphStyle {
+public func PDParagraphs(_ paras: [PDParagraph]) -> NSMutableParagraphStyle {
     let style = NSMutableParagraphStyle().set { (style) in
         paras.forEach { (paragraph) in
             switch paragraph.key {
@@ -57,23 +57,23 @@ public func sParagraphs(_ paras: [sParagraph]) -> NSMutableParagraphStyle {
     return style
 }
 
-public enum sAttributeItem {
+public enum PDAttributeItem {
     case font;
     case textColor;
     case charSpacing;
 }
 
-public struct sAttribute {
-    public var key  : sAttributeItem
+public struct PDAttribute {
+    public var key  : PDAttributeItem
     public var value: Any
     
-    public init(key: sAttributeItem, value: Any) {
+    public init(key: PDAttributeItem, value: Any) {
         self.key   = key;
         self.value = value;
     }
 }
 
-public func sAttributes(_ attrs: [sAttribute]) -> [NSAttributedString.Key:Any] {
+public func PDAttributes(_ attrs: [sAttribute]) -> [NSAttributedString.Key:Any] {
     var attr: [NSAttributedString.Key:Any] = [:]
     attrs.forEach { (attribute) in
         switch (attribute.key) {
