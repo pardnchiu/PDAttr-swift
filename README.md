@@ -42,7 +42,7 @@ let attributes = [
     NSAttributedString.Key.font           : UIFont.systemFont(ofSize: 13, weight: .bold),
     NSAttributedString.Key.foregroundColor: UIColor.black,
     ];
-    <br/>
+<br/>
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);
 </pre>
 <br/>
