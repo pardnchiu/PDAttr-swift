@@ -9,120 +9,84 @@
 import Foundation
 import UIKit
 
-public enum PDParagraphItem {
-    case textAlignment;       // 對齊
-    case lineBreakMode;       // 斷行
-    case lineSpacing;         // 行間距
-    case lineMinHeight;       // 最低行高
-    case lineMaxHeight;       // 最高行高
-    case paragraphSpacing;    // 段间距
-    case firstLineHeadIndent; // 首行縮進
-    case headIndent;          // 整體縮進
-    case tailIndent;
-    case writingDirection;    // 書寫方向
-};
-
-public struct PDParagraph {
-    public var key  : PDParagraphItem;
-    public var value: Any;
-    
-    public init(key: PDParagraphItem, value: Any) {
-        self.key = key;
-        switch (key) {
-        case .textAlignment   : self.value = (value as? NSTextAlignment) ?? NSTextAlignment.left;
-        case .lineBreakMode   : self.value = (value as? NSLineBreakMode) ?? NSLineBreakMode.byTruncatingTail;
-        case .writingDirection: self.value = (value as? NSWritingDirection) ?? NSWritingDirection.leftToRight;
-        default               : self.value = CGFloat(truncating: (value as? NSNumber) ?? 0);
-        };
+public struct PDAttributed {
+    public enum body {
+        case text;
+        
+        case font;
+        case textColor;
+        case charSpacing;
+        
+        case textAlignment;    // 對齊
+        case lineBreakMode;    // 斷行
+        case lineSpacing;      // 行間距
+        case lineMinHeight;    // 最低行高
+        case lineMaxHeight;    // 最高行高
+        case paragraphSpacing; // 段间距
+        case firstLineIndent;  // 首行縮進
+        case headIndent;       // 整體縮進
+        case tailIndent;
+        case direction;        // 書寫方向
     };
-};
-
-public func PDParagraphs(_ paras: [PDParagraph]) -> NSMutableParagraphStyle {
-    let style = NSMutableParagraphStyle().set { (style) in
-        paras.forEach { (paragraph) in
-            switch paragraph.key {
-            case .textAlignment      : style.alignment            = (paragraph.value as? NSTextAlignment)!;
-            case .lineBreakMode      : style.lineBreakMode        = (paragraph.value as? NSLineBreakMode)!;
-            case .lineSpacing        : style.lineSpacing          = (paragraph.value as? CGFloat)!;
-            case .lineMinHeight      : style.minimumLineHeight    = (paragraph.value as? CGFloat)!;
-            case .lineMaxHeight      : style.maximumLineHeight    = (paragraph.value as? CGFloat)!;
-            case .paragraphSpacing   : style.paragraphSpacing     = (paragraph.value as? CGFloat)!;
-            case .firstLineHeadIndent: style.firstLineHeadIndent  = (paragraph.value as? CGFloat)!;
-            case .headIndent         : style.headIndent           = (paragraph.value as? CGFloat)!;
-            case .tailIndent         : style.tailIndent           = (paragraph.value as? CGFloat)!;
-            case .writingDirection   : style.baseWritingDirection = (paragraph.value as? NSWritingDirection)!;
-            };
-        };
-    };
-    return style
-};
-
-public enum PDAttributeItem {
-    case font;
-    case textColor;
-    case charSpacing;
-};
-
-public struct PDAttribute {
-    public var key  : PDAttributeItem;
-    public var value: Any;
-    
-    public init(key: PDAttributeItem, value: Any) {
+    public var key: body, value: Any
+    public init(_ key: body,_ value: Any) {
         self.key   = key;
         self.value = value;
     };
 };
+public func aText(text value: String)                   -> PDAttributed { return PDAttributed(.text, value) };
+public func aText(font value: UIFont)                   -> PDAttributed { return PDAttributed(.font, value) };
+public func aText(textColor value: UIColor)             -> PDAttributed { return PDAttributed(.textColor, value) };
+public func aText(textAlignment value: NSTextAlignment) -> PDAttributed { return PDAttributed(.textAlignment, value) };
+public func aText(charSpacing value: Float)             -> PDAttributed { return PDAttributed(.charSpacing, value) };
+public func aText(lineBreakMode value: NSLineBreakMode) -> PDAttributed { return PDAttributed(.lineBreakMode, value) };
+public func aText(lineSpacing value: CGFloat)           -> PDAttributed { return PDAttributed(.lineSpacing, value) };
+public func aText(lineMinHeight value: CGFloat)         -> PDAttributed { return PDAttributed(.lineMinHeight, value) };
+public func aText(lineMaxHeight value: CGFloat)         -> PDAttributed { return PDAttributed(.lineMaxHeight, value) };
+public func aText(paragraphSpacing value: CGFloat)      -> PDAttributed { return PDAttributed(.paragraphSpacing, value) };
+public func aText(firstLineIndent value: CGFloat)       -> PDAttributed { return PDAttributed(.firstLineIndent, value) };
+public func aText(headIndent value: CGFloat)            -> PDAttributed { return PDAttributed(.headIndent, value) };
+public func aText(tailIndent value: CGFloat)            -> PDAttributed { return PDAttributed(.tailIndent, value) };
+public func aText(direction value: NSWritingDirection)  -> PDAttributed { return PDAttributed(.direction, value) };
 
-public func PDAttributes(_ attrs: [PDAttribute]) -> [NSAttributedString.Key:Any] {
-    var attr: [NSAttributedString.Key:Any] = [:];
-    attrs.forEach { (attribute) in
-        switch (attribute.key) {
-        case .font       : attr[NSAttributedString.Key.font] = attribute.value;
-        case .textColor  : attr[NSAttributedString.Key.foregroundColor] = attribute.value;
-        case .charSpacing: attr[NSAttributedString.Key.kern] = attribute.value;
+public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
+    var attributes: [NSAttributedString.Key:Any] = [:];
+    var text: String = "";
+    let style = NSMutableParagraphStyle().set { (style) in
+        values.forEach {
+            switch $0.key {
+            case .text            : if let value = $0.value as? String { text = value };
+            case .font            : if let value = $0.value as? UIFont { attributes[NSAttributedString.Key.font] = value };
+            case .textColor       : if let value = $0.value as? UIColor { attributes[NSAttributedString.Key.foregroundColor] = value };
+            case .charSpacing     : if let value = $0.value as? Float { attributes[NSAttributedString.Key.kern] = value };
+            case .textAlignment   : if let value = $0.value as? NSTextAlignment { style.alignment = value };
+            case .lineBreakMode   : if let value = $0.value as? NSLineBreakMode { style.lineBreakMode = value };
+            case .lineSpacing     : if let value = $0.value as? CGFloat { style.lineSpacing = value };
+            case .lineMinHeight   : if let value = $0.value as? CGFloat { style.minimumLineHeight = value };
+            case .lineMaxHeight   : if let value = $0.value as? CGFloat { style.maximumLineHeight = value };
+            case .paragraphSpacing: if let value = $0.value as? CGFloat { style.paragraphSpacing = value };
+            case .firstLineIndent : if let value = $0.value as? CGFloat { style.firstLineHeadIndent = value };
+            case .headIndent      : if let value = $0.value as? CGFloat { style.headIndent = value };
+            case .tailIndent      : if let value = $0.value as? CGFloat { style.tailIndent = value };
+            case .direction       : if let value = $0.value as? NSWritingDirection { style.baseWritingDirection = value };
+            };
         };
     };
-    return attr
-};
+    attributes[NSAttributedString.Key.paragraphStyle] = style;
+    return NSAttributedString(string: text, attributes: attributes);
+}
 
 public extension UIButton {
-    
-    func attrbuted(_ text: String,_ paragraph: NSMutableParagraphStyle,_ attributes: [NSAttributedString.Key:Any]) {
-        var attributes = attributes;
-        attributes[NSAttributedString.Key.paragraphStyle] = paragraph;
-        self.setAttributedTitle(NSAttributedString(string: text, attributes: attributes), for: .normal);
-    };
+    func PDAttrbuted(normal values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .normal) };
+    func PDAttrbuted(highlight values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .highlighted) };
+    func PDAttrbuted(disabled values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .disabled) };
 };
 
 public extension UILabel {
-    
-    func attrbuted(_ text: String,_ paragraph: NSMutableParagraphStyle,_ attributes: [NSAttributedString.Key:Any]) {
-        var attributes = attributes;
-        attributes[NSAttributedString.Key.paragraphStyle] = paragraph;
-        self.attributedText = NSAttributedString(string: text, attributes: attributes);
-    };
+    func PDAttrbuted(_ values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
 };
 
 public extension UITextField {
-    
-    func attrbuted(txt text: String,_ paragraph: NSMutableParagraphStyle,_ attributes: [NSAttributedString.Key:Any]) {
-        var attributes = attributes;
-        attributes[NSAttributedString.Key.paragraphStyle] = paragraph;
-        self.attributedText = NSAttributedString(string: text, attributes: attributes);
-    };
-    
-    func attrbuted(phd text: String,_ paragraph: NSMutableParagraphStyle,_ attributes: [NSAttributedString.Key:Any]) {
-        var attributes = attributes;
-        attributes[NSAttributedString.Key.paragraphStyle] = paragraph;
-        self.attributedPlaceholder = NSAttributedString(string: text, attributes: attributes);
-    };
-};
-
-public extension String {
-    
-    func attrbuted(_ paragraph: NSMutableParagraphStyle,_ attributes: [NSAttributedString.Key:Any]) -> NSAttributedString {
-        var attributes = attributes;
-        attributes[NSAttributedString.Key.paragraphStyle] = paragraph;
-        return NSAttributedString(string: self, attributes: attributes)
-    };
+    func PDAttrbuted(txt values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
+    func PDAttrbuted(phd values: [PDAttributed]) { self.attributedPlaceholder = PDAttrbutedString(values) };
 };
