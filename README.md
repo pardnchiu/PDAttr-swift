@@ -47,13 +47,13 @@ label.attributedText = NSAttributedString(string: "測試文字", attributes: at
 <pre>
 var label = UILabel();
 label.PDAttrbuted([
-    lText(text: "測試文字"),
-    lText(textColor: .black),
-    lText(textAlignment: .left),
-    lText(font: .systemFont(ofSize: 13, weight: .bold)),
-    lText(lineBreakMode: .byTruncatingTail),
-    lText(lineSpacing: 10),
-    lText(lineMinHeight: 30),
-    lText(charSpacing: 1.0)
+    aText(text: "測試文字"),
+    aText(textColor: .black),
+    aText(textAlignment: .left),
+    aText(font: .systemFont(ofSize: 13, weight: .bold)),
+    aText(lineBreakMode: .byTruncatingTail),
+    aText(lineSpacing: 10),
+    aText(lineMinHeight: 30),
+    aText(charSpacing: 1.0)
 ])
 </pre>
