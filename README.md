@@ -22,13 +22,6 @@ Body
     case direction;        // 書寫方向
 </pre>
 <br/>
-<pre>
-PDAttributeItem
-    font;        // 自型
-    textColor;   // 顏色
-    charSpacing; // 字元間距
-</pre>
-<br/>
 簡化前<br/>
 <br/>
 <pre>
