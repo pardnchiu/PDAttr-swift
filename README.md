@@ -5,17 +5,21 @@
 透過預先整理好的項目，更能輕鬆地設定個性化文字內容<br/>
 <br/>
 <pre>
-PDParagraphItem
-    textAlignment;       // 對齊
-    lineBreakMode;       // 斷行
-    lineSpacing;         // 行間距
-    lineMinHeight;       // 最低行高
-    lineMaxHeight;       // 最高行高
-    paragraphSpacing;    // 段间距
-    firstLineHeadIndent; // 首行縮進
-    headIndent;          // 整體縮進
-    tailIndent;
-    writingDirection;    // 書寫方向
+Body
+    case text;
+    case font;
+    case textColor;
+    case charSpacing;
+    case textAlignment;    // 對齊
+    case lineBreakMode;    // 斷行
+    case lineSpacing;      // 行間距
+    case lineMinHeight;    // 最低行高
+    case lineMaxHeight;    // 最高行高
+    case paragraphSpacing; // 段间距
+    case firstLineIndent;  // 首行縮進
+    case headIndent;       // 整體縮進
+    case tailIndent;
+    case direction;        // 書寫方向
 </pre>
 <br/>
 <pre>
@@ -49,17 +53,14 @@ label.attributedText = NSAttributedString(string: "測試文字", attributes: at
 簡化後<br/>
 <pre>
 var label = UILabel();
-label.attrbuted(
-    "測試文字",
-    PDParagraphs([
-        PDParagraph(key: .textAlignment, value: NSTextAlignment.left),
-        PDParagraph(key: .lineBreakMode, value: NSLineBreakMode.byTruncatingTail),
-        PDParagraph(key: .lineSpacing, value: 10),
-        PDParagraph(key: .lineMinHeight, value: 30)
-        ]),
-    PDAttributes([
-        PDAttribute(key: .charSpacing, value: 1.0),
-        PDAttribute(key: .font, value: UIFont.systemFont(ofSize: 13, weight: .bold)),
-        PDAttribute(key: .textColor, value: UIColor.black)
-        ]));
+label.PDAttrbuted([
+    lText(text: "測試文字"),
+    lText(textColor: .black),
+    lText(textAlignment: .left),
+    lText(font: .systemFont(ofSize: 13, weight: .bold)),
+    lText(lineBreakMode: .byTruncatingTail),
+    lText(lineSpacing: 10),
+    lText(lineMinHeight: 30),
+    lText(charSpacing: 1.0)
+])
 </pre>
