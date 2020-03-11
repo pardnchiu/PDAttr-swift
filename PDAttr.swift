@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public struct PDAttributed {
+public struct PDAttr {
     public enum body {
         case text;
         
@@ -34,22 +34,22 @@ public struct PDAttributed {
         self.value = value;
     };
 };
-public func aText(text value: String)                   -> PDAttributed { return PDAttributed(.text, value) };
-public func aText(font value: UIFont)                   -> PDAttributed { return PDAttributed(.font, value) };
-public func aText(textColor value: UIColor)             -> PDAttributed { return PDAttributed(.textColor, value) };
-public func aText(textAlignment value: NSTextAlignment) -> PDAttributed { return PDAttributed(.textAlignment, value) };
-public func aText(charSpacing value: Float)             -> PDAttributed { return PDAttributed(.charSpacing, value) };
-public func aText(lineBreakMode value: NSLineBreakMode) -> PDAttributed { return PDAttributed(.lineBreakMode, value) };
-public func aText(lineSpacing value: CGFloat)           -> PDAttributed { return PDAttributed(.lineSpacing, value) };
-public func aText(lineMinHeight value: CGFloat)         -> PDAttributed { return PDAttributed(.lineMinHeight, value) };
-public func aText(lineMaxHeight value: CGFloat)         -> PDAttributed { return PDAttributed(.lineMaxHeight, value) };
-public func aText(paragraphSpacing value: CGFloat)      -> PDAttributed { return PDAttributed(.paragraphSpacing, value) };
-public func aText(firstLineIndent value: CGFloat)       -> PDAttributed { return PDAttributed(.firstLineIndent, value) };
-public func aText(headIndent value: CGFloat)            -> PDAttributed { return PDAttributed(.headIndent, value) };
-public func aText(tailIndent value: CGFloat)            -> PDAttributed { return PDAttributed(.tailIndent, value) };
-public func aText(direction value: NSWritingDirection)  -> PDAttributed { return PDAttributed(.direction, value) };
+public func aText(text value: String)                   -> PDAttr { return PDAttr(.text, value) };
+public func aText(font value: UIFont)                   -> PDAttr { return PDAttr(.font, value) };
+public func aText(textColor value: UIColor)             -> PDAttr { return PDAttr(.textColor, value) };
+public func aText(textAlignment value: NSTextAlignment) -> PDAttr { return PDAttr(.textAlignment, value) };
+public func aText(charSpacing value: Float)             -> PDAttr { return PDAttr(.charSpacing, value) };
+public func aText(lineBreakMode value: NSLineBreakMode) -> PDAttr { return PDAttr(.lineBreakMode, value) };
+public func aText(lineSpacing value: CGFloat)           -> PDAttr { return PDAttr(.lineSpacing, value) };
+public func aText(lineMinHeight value: CGFloat)         -> PDAttr { return PDAttr(.lineMinHeight, value) };
+public func aText(lineMaxHeight value: CGFloat)         -> PDAttr { return PDAttr(.lineMaxHeight, value) };
+public func aText(paragraphSpacing value: CGFloat)      -> PDAttr { return PDAttr(.paragraphSpacing, value) };
+public func aText(firstLineIndent value: CGFloat)       -> PDAttr { return PDAttr(.firstLineIndent, value) };
+public func aText(headIndent value: CGFloat)            -> PDAttr { return PDAttr(.headIndent, value) };
+public func aText(tailIndent value: CGFloat)            -> PDAttr { return PDAttr(.tailIndent, value) };
+public func aText(direction value: NSWritingDirection)  -> PDAttr { return PDAttr(.direction, value) };
 
-public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
+public func PDAttrString(_ values: [PDAttr]) -> NSAttributedString {
     var attributes: [NSAttributedString.Key:Any] = [:];
     var text: String = "";
     let style = NSMutableParagraphStyle().set { (style) in
@@ -77,16 +77,16 @@ public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
 }
 
 public extension UIButton {
-    func PDAttributed(normal values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .normal) };
-    func PDAttributed(highlight values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .highlighted) };
-    func PDAttributed(disabled values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .disabled) };
+    func PDAttr(normal values: [PDAttr]) { self.setAttributedTitle(PDAttrString(values), for: .normal) };
+    func PDAttr(highlight values: [PDAttr]) { self.setAttributedTitle(PDAttrString(values), for: .highlighted) };
+    func PDAttr(disabled values: [PDAttr]) { self.setAttributedTitle(PDAttrString(values), for: .disabled) };
 };
 
 public extension UILabel {
-    func PDAttributed(_ values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
+    func PDAttr(_ values: [PDAttr]) { self.attributedText = PDAttrString(values) };
 };
 
 public extension UITextField {
-    func PDAttributed(txt values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
-    func PDAttributed(phd values: [PDAttributed]) { self.attributedPlaceholder = PDAttrbutedString(values) };
+    func PDAttr(txt values: [PDAttr]) { self.attributedText = PDAttrString(values) };
+    func PDAttr(phd values: [PDAttr]) { self.attributedPlaceholder = PDAttrString(values) };
 };
